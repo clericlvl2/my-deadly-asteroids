@@ -1,0 +1,57 @@
+@use './../../styles/variables' as *;
+
+$gap: 32px;
+$pad: 16px;
+$col-width-third: calc((100% - $gap * 2) / 3);
+$col-width-fourth: calc((100% - $gap * 3 + $pad * 2) / 4);
+
+.main {
+  display: grid;
+  grid-template-areas: '. list .';
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  gap: $gap;
+}
+
+.image {
+  position: fixed;
+  max-width: $col-width-third;
+  max-height: 75vh;
+  object-fit: contain;
+  object-position: left;
+}
+
+.listWrapper {
+  grid-area: list;
+  justify-self: center;
+  padding-bottom: $pad;
+}
+
+.cartWrapper {
+  position: fixed;
+  width: $col-width-third;
+  right: 0;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .main {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: '. list list list';
+    padding: 0 $pad;
+  }
+
+  .image {
+    right: calc(100% - $col-width-fourth);
+    width: 400px;
+    max-width: none;
+    object-position: right;
+  }
+
+  .listWrapper {
+    padding-bottom: $cart-bottom-menu-height + $pad;
+  }
+
+  .widgetContainer {
+    width: 0;
+  }
+}

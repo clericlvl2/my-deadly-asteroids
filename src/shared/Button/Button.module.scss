@@ -1,0 +1,50 @@
+@use './../../styles/variables' as *;
+
+.large {
+  padding: 8px 16px;
+  border-radius: 32px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.medium {
+  padding: 2px 11px;
+  border-radius: 16px;
+  font-size: 11px;
+  line-height: 20px;
+  letter-spacing: 1px;
+}
+
+.primary {
+  background-color: $color-primary;
+  color: $color-font;
+
+  &:active {
+    background-color: $color-accent;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: rgba($color-primary, 0.85);
+    }
+  }
+}
+
+.accent {
+  background-color: rgba($color-accent, 0.8);
+  color: $color-primary;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: $color-accent;
+    }
+  }
+}
+
+.button {
+  padding: 8px 16px 8px 16px;
+  border: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  font-weight: 700;
+}

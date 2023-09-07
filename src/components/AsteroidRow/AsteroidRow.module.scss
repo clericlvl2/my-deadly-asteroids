@@ -1,0 +1,91 @@
+@use './../../styles/variables' as *;
+
+.container {
+  width: fit-content;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: rgba($color-secondary, 0.6);
+    }
+  }
+
+  &:active {
+    background-color: rgba($color-secondary, 0.6);
+  }
+}
+
+.date {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.infoRow {
+  display: flex;
+  gap: 8px;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.distanceInfo {
+  composes: infoColumn;
+  gap: 4px;
+}
+
+.distance {
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.image {
+  height: 40px;
+}
+
+.large {
+  height: 60px;
+}
+
+.nameInfo {
+  composes: infoColumn;
+  gap: 0;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: underline;
+}
+
+.diameter {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.bottomInfo {
+  composes: infoRow;
+  align-items: center;
+  gap: 10px;
+}
+
+.warning {
+  font-size: 14px;
+  line-height: 20px;
+}

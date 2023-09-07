@@ -1,0 +1,27 @@
+@use './../../styles/variables' as *;
+
+.header {
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  padding: 0;
+  font-family: 'Passion One', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 35px;
+  color: $color-primary;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}

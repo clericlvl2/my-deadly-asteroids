@@ -1,0 +1,20 @@
+@use '_normalize.scss';
+@use '_fonts.scss';
+@use '_variables.scss' as *;
+
+:root {
+  min-width: $breakpoint-mobile;
+  background-color: $color-background;
+
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: $color-font;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}

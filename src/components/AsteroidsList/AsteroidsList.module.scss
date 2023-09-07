@@ -1,0 +1,20 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.listContainer {
+  composes: column;
+}
+
+.list {
+  composes: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spinnerWrapper {
+  padding-left: 40px;
+}
