@@ -11,10 +11,10 @@ export const getApproachDate = (approachDate: string): string =>
     .replaceAll('.', '');
 
 export const getApproachTime = (approachDate: string): string => {
-  const date = new Date(approachDate);
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  return `${hours}:${minutes}`;
+  // Нельзя использовать new Date(), парсинг даты ("2195-Apr-03 08:20") работает иначе в Chrome и Safari
+  // https://stackoverflow.com/questions/21883699/safari-javascript-date-nan-issue-yyyy-mm-dd-hhmmss
+  const time = approachDate.split(' ')[1];
+  return time !== undefined ? time : 'Время неизвестно';
 };
 
 export const getDistance = (distance: {

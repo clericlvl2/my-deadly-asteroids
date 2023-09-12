@@ -7,9 +7,9 @@ export interface AsteroidIconProps {
 
 const AsteroidIcon = ({ size }: AsteroidIconProps) => (
   <img
-    className={
+    className={`${styles.image} ${
       size > 300 ? styles.large : size > 100 ? styles.medium : styles.small
-    }
+    }`}
     src={asteroidImage}
     alt="Астероид"
   />

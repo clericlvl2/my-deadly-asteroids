@@ -1,5 +1,10 @@
 @use '../../styles/variables' as *;
 
+.image {
+  object-fit: contain;
+  object-position: center;
+}
+
 .small {
   width: 26px;
 }
