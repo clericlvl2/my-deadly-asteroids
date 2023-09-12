@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+
+.small {
+  width: 26px;
+}
+
+.medium {
+  width: 36px;
+}
+
+.large {
+  width: 52px;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .small {
+    width: 24px;
+  }
+
+  .medium {
+    width: 32px;
+  }
+
+  .large {
+    width: 44px;
+  }
+}

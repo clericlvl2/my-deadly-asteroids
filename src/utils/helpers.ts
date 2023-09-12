@@ -1,4 +1,4 @@
-import { DateParams, DistanceUnits } from './types.ts';
+import { AstroDistance, DateParams } from './types.ts';
 
 export const getApproachDate = (approachDate: string): string =>
   new Date(approachDate)
@@ -10,13 +10,17 @@ export const getApproachDate = (approachDate: string): string =>
     .toString()
     .replaceAll('.', '');
 
-export const getDiameter = (diameter: number): string =>
-  Math.round(diameter).toLocaleString();
+export const getApproachTime = (approachDate: string): string => {
+  const date = new Date(approachDate);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
+};
 
 export const getDistance = (distance: {
   kilometers: string;
   lunar: string;
-}): Record<DistanceUnits, string> => ({
+}): AstroDistance => ({
   km: parseInt(distance.kilometers).toLocaleString(),
   lunar: parseInt(distance.lunar).toLocaleString(),
 });

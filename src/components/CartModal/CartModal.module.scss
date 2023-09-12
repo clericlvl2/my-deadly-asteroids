@@ -1,0 +1,152 @@
+@use '../../styles/variables' as *;
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-width: 288px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0s linear 0.24s,
+    opacity 0.24s linear;
+}
+
+.container {
+  position: relative;
+  width: 430px;
+  min-height: 540px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 16px 24px 16px;
+  box-sizing: border-box;
+  background: $color-secondary;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+}
+
+.opened {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.exitButton {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  margin: 0;
+  padding: 0;
+  background: url('../../assets/images/exit-icon.svg') no-repeat center;
+  background-size: 100%;
+  border: none;
+  transition: opacity 0.24s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.header {
+  align-self: start;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+
+.content {
+  box-sizing: border-box;
+  overflow-y: scroll;
+  align-self: stretch;
+  max-height: 368px;
+  margin: 16px 0 24px 0;
+  flex-grow: 1;
+
+  scrollbar-color: $color-primary;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($color-font, 0.5);
+    border-radius: 4px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.asteroidInfo {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: 52px 1fr; //44 & 52
+}
+
+.asteroidIcon {
+  align-self: center;
+  justify-self: center;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.name {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.diameter {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .container {
+    min-height: 364px;
+
+    width: 292px;
+    font-size: 14px;
+  }
+
+  .content {
+    max-height: 264px;
+  }
+
+  .exitButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .title {
+    margin: 0 0 4px 0;
+    padding: 0;
+  }
+}

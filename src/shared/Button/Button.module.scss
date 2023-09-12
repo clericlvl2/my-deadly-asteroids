@@ -15,18 +15,23 @@
   letter-spacing: 1px;
 }
 
+.disabled {
+  filter: brightness(0.5);
+  pointer-events: none;
+}
+
 .primary {
   background-color: $color-primary;
   color: $color-font;
-
-  &:active {
-    background-color: $color-accent;
-  }
 
   @media (any-hover: hover) {
     &:hover {
       background-color: rgba($color-primary, 0.85);
     }
+  }
+
+  &:active {
+    background-color: $color-accent;
   }
 }
 
@@ -44,7 +49,9 @@
 .button {
   padding: 8px 16px 8px 16px;
   border: none;
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s,
+    filter 0.2s;
   cursor: pointer;
   font-weight: 700;
 }

@@ -1,18 +1,20 @@
-import styles from './AsteroidsListHeader.module.scss';
+import styles from './ListHeader.module.scss';
 import { useContext } from 'react';
 import { DistanceUnitsContext } from '../../contexts';
 import { DistanceUnits } from '../../utils/types.ts';
 
-export interface AsteroidsListHeaderProps {
+export interface ListHeaderProps {
+  title: string;
   onSelectUnits: (units: DistanceUnits) => void;
 }
 
-const AsteroidsListHeader = ({ onSelectUnits }: AsteroidsListHeaderProps) => {
+const ListHeader = ({ title, onSelectUnits }: ListHeaderProps) => {
   const units = useContext(DistanceUnitsContext);
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Ближайшие подлёты астероидов</h2>
+      <h2 className={styles.title}>{title}</h2>
       <button
+        type="button"
         className={`${styles.button} ${units === 'km' ? styles.isActive : ''}`}
         onClick={() => onSelectUnits('km')}
       >
@@ -20,6 +22,7 @@ const AsteroidsListHeader = ({ onSelectUnits }: AsteroidsListHeaderProps) => {
       </button>{' '}
       |{' '}
       <button
+        type="button"
         className={`${styles.button} ${
           units === 'lunar' ? styles.isActive : ''
         }`}
@@ -31,4 +34,4 @@ const AsteroidsListHeader = ({ onSelectUnits }: AsteroidsListHeaderProps) => {
   );
 };
 
-export default AsteroidsListHeader;
+export default ListHeader;

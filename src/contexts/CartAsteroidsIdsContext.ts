@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export const CartAsteroidsIdsContext = createContext<number[]>([]);
+export const CartAsteroidsIdsContext = createContext<string[]>([]);

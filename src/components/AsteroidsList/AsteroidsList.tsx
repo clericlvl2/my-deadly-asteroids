@@ -1,21 +1,24 @@
 import styles from './AsteroidsList.module.scss';
-import { AsteroidsListHeader } from '../AsteroidsListHeader';
-import { useEffect, useState } from 'react';
+import { ListHeader } from '../ListHeader';
+import { useEffect } from 'react';
 import { DistanceUnits } from '../../utils/types.ts';
-import { DistanceUnitsContext } from '../../contexts';
-import { useInfiniteAsteroids } from '../../hooks';
+import { useInfiniteAsteroidsInfo } from '../../hooks';
 import { Spinner } from '../../shared';
-import { AsteroidRow } from '../AsteroidRow';
+import { AsteroidCard } from '../AsteroidCard';
 import { useInView } from 'react-intersection-observer';
 
 export interface AsteroidsListProps {
-  onPurchaseAsteroid: (id: number) => void;
+  onPurchaseAsteroid: (id: string) => void;
+  onSelectUnits: (units: DistanceUnits) => void;
 }
 
-const AsteroidsList = ({ onPurchaseAsteroid }: AsteroidsListProps) => {
-  const { data, isFetching, isError, fetchNextPage } = useInfiniteAsteroids();
+const AsteroidsList = ({
+  onPurchaseAsteroid,
+  onSelectUnits,
+}: AsteroidsListProps) => {
+  const { data, isFetching, isError, fetchNextPage } =
+    useInfiniteAsteroidsInfo();
   const { ref, inView } = useInView({ threshold: 0 });
-  const [units, setUnits] = useState<DistanceUnits>('km');
   const asteroidsList = data ? data.pages.flatMap(item => item.data) : [];
 
   useEffect(() => {
@@ -25,30 +28,30 @@ const AsteroidsList = ({ onPurchaseAsteroid }: AsteroidsListProps) => {
   }, [inView, fetchNextPage]);
 
   return (
-    <DistanceUnitsContext.Provider value={units}>
-      <div className={styles.listContainer}>
-        <AsteroidsListHeader onSelectUnits={setUnits} />
-        <ul className={styles.list}>
-          {asteroidsList.length !== 0 &&
-            asteroidsList.map(item => (
-              <AsteroidRow
-                key={item.id}
+    <div className={styles.listContainer}>
+      <ListHeader
+        title="Ближайшие подлёты астероидов"
+        onSelectUnits={onSelectUnits}
+      />
+      <ul className={styles.list}>
+        {asteroidsList.length !== 0 &&
+          asteroidsList.map(item => (
+            <li key={item.id}>
+              <AsteroidCard
                 asteroidData={item}
                 onPurchaseAsteroid={onPurchaseAsteroid}
               />
-            ))}
-          <div ref={ref}></div>
-          {isFetching ? (
-            <div className={styles.spinnerWrapper}>
-              <Spinner />
-            </div>
-          ) : null}
-          {isError ? (
-            <span>Произошла ошибка, перезагрузите страницу</span>
-          ) : null}
-        </ul>
-      </div>
-    </DistanceUnitsContext.Provider>
+            </li>
+          ))}
+        <div ref={ref}></div>
+        {isFetching ? (
+          <div className={styles.spinnerWrapper}>
+            <Spinner />
+          </div>
+        ) : null}
+        {isError ? <span>Произошла ошибка, перезагрузите страницу</span> : null}
+      </ul>
+    </div>
   );
 };
 

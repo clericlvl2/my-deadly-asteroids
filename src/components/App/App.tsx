@@ -1,29 +1,65 @@
-import planetEarth from '../../assets/images/planet-earth.png';
-import styles from './App.module.scss';
+import { Route, Routes } from 'react-router-dom';
 import { Header } from '../Header';
-import { AsteroidsList } from '../AsteroidsList';
-import { CartWidget } from '../CartWidget';
-import { CartAsteroidsIdsContext } from '../../contexts';
 import { useCartAsteroidsIds } from '../../hooks';
+import { CartAsteroidsIdsContext, DistanceUnitsContext } from '../../contexts';
+import { Layout } from '../Layout';
+import planetEarth from '../../assets/images/planet-earth.png';
+import largeAsteroid from '../../assets/images/asteroid-large.png';
+import { AsteroidsList } from '../AsteroidsList';
+import { AsteroidDetails } from '../AsteroidDetails';
+import { useState } from 'react';
+import { DistanceUnits } from '../../utils/types.ts';
+import CartModal from '../CartModal/CartModal.tsx';
 
 const App = () => {
   const [cartAsteroidsIds, handlePurchase] = useCartAsteroidsIds();
+  const [units, setUnits] = useState<DistanceUnits>('km');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
-    <>
-      <Header />
+    <DistanceUnitsContext.Provider value={units}>
       <CartAsteroidsIdsContext.Provider value={cartAsteroidsIds}>
-        <main className={styles.main}>
-          <img className={styles.image} src={planetEarth} alt="Планета Земля" />
-          <div className={styles.listWrapper}>
-            <AsteroidsList onPurchaseAsteroid={handlePurchase} />
-          </div>
-          <div className={styles.cartWrapper}>
-            <CartWidget />
-          </div>
-        </main>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout
+                srcImage={planetEarth}
+                alt="Планета Земля"
+                onModalOpen={handleOpenModal}
+                content={
+                  <AsteroidsList
+                    onPurchaseAsteroid={handlePurchase}
+                    onSelectUnits={setUnits}
+                  />
+                }
+              />
+            }
+          />
+          <Route
+            path="/asteroid/:id"
+            element={
+              <Layout
+                srcImage={largeAsteroid}
+                alt="Астероид"
+                onModalOpen={handleOpenModal}
+                content={
+                  <AsteroidDetails
+                    onPurchaseAsteroid={handlePurchase}
+                    onSelectUnits={setUnits}
+                  />
+                }
+              />
+            }
+          />
+        </Routes>
+        <CartModal isOpen={isModalOpen} onExit={handleCloseModal} />
       </CartAsteroidsIdsContext.Provider>
-    </>
+    </DistanceUnitsContext.Provider>
   );
 };
 

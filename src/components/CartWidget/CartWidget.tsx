@@ -3,7 +3,11 @@ import { Button } from '../../shared';
 import { useContext } from 'react';
 import { CartAsteroidsIdsContext } from '../../contexts';
 
-const CartWidget = () => {
+export interface CartWidgetProps {
+  onModalOpen: () => void;
+}
+
+const CartWidget = ({ onModalOpen }: CartWidgetProps) => {
   const cartAsteroidsIds = useContext(CartAsteroidsIdsContext);
 
   return (
@@ -15,7 +19,11 @@ const CartWidget = () => {
             Астероидов: {cartAsteroidsIds.length}
           </span>
         </div>
-        <Button text="Отправить" onClick={() => null} />
+        <Button
+          text="Отправить"
+          onClick={onModalOpen}
+          isDisabled={cartAsteroidsIds.length === 0}
+        />
       </div>
     </div>
   );

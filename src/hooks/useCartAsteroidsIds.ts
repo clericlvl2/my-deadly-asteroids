@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export const useCartAsteroidsIds = (defaultIds: number[] = []) => {
+export const useCartAsteroidsIds = (defaultIds: string[] = []) => {
   const [cartAsteroidsIds, setCartAsteroidsIds] =
-    useState<number[]>(defaultIds);
+    useState<string[]>(defaultIds);
 
-  const handlePurchase = (id: number) => {
+  const handlePurchase = (id: string) => {
     const isPurchased = cartAsteroidsIds.includes(id);
     setCartAsteroidsIds(state =>
       isPurchased

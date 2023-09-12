@@ -36,34 +36,9 @@
   gap: 8px;
 }
 
-.infoColumn {
+.nameInfo {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.distanceInfo {
-  composes: infoColumn;
-  gap: 4px;
-}
-
-.distance {
-  white-space: nowrap;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-.image {
-  height: 40px;
-}
-
-.large {
-  height: 60px;
-}
-
-.nameInfo {
-  composes: infoColumn;
-  gap: 0;
 }
 
 .name {
@@ -77,15 +52,4 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
-}
-
-.bottomInfo {
-  composes: infoRow;
-  align-items: center;
-  gap: 10px;
-}
-
-.warning {
-  font-size: 14px;
-  line-height: 20px;
 }

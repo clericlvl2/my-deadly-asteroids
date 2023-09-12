@@ -1,1 +1,1 @@
-# React + TypeScript + Vite
+# My Deadly Asteroids

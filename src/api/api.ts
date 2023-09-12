@@ -1,8 +1,9 @@
 import {
   ApiOptions,
   DateParams,
-  GetInfiniteAsteroidsInfoResponse,
-  GetAsteroidsInfoResponseRaw,
+  InfiniteAsteroidsData,
+  AsteroidsData,
+  AsteroidDetails,
 } from '../utils/types.ts';
 import { API_KEY, BASE_URL } from '../utils/constants.ts';
 import { parseParams } from '../utils/helpers.ts';
@@ -24,16 +25,21 @@ class NeoApi {
     return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`);
   }
 
-  async getInfiniteAsteroidsInfo({
+  async fetchAsteroidDetails(id: string | undefined): Promise<AsteroidDetails> {
+    return id !== undefined
+      ? await this._request(`/neo/${id}`)
+      : Promise.reject('Ошибка, не найден id');
+  }
+
+  async fetchInfiniteAsteroidsInfo({
     startDate,
     endDate,
-  }: DateParams): Promise<GetInfiniteAsteroidsInfoResponse> {
+  }: DateParams): Promise<InfiniteAsteroidsData> {
     const { near_earth_objects: nearEarthObjects, links } =
-      await this._request<GetAsteroidsInfoResponseRaw>('/feed', [
+      await this._request<AsteroidsData>('/feed', [
         `start_date=${startDate}`,
         `end_date=${endDate}`,
       ]);
-
     return {
       data: Object.entries(nearEarthObjects).flatMap(([, value]) => value),
       pageParams: {
