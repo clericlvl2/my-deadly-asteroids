@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Header } from '../Header';
 import { useCartAsteroidsIds } from '../../hooks';
 import { CartAsteroidsIdsContext, DistanceUnitsContext } from '../../contexts';
@@ -56,6 +56,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/*" element={<Navigate to={'/'} replace />} />
         </Routes>
         <CartModal isOpen={isModalOpen} onExit={handleCloseModal} />
       </CartAsteroidsIdsContext.Provider>

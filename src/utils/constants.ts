@@ -1,6 +1,7 @@
 import { DateParams, DistanceUnits } from './types.ts';
 
 export const BASE_URL = 'https://api.nasa.gov/neo/rest/v1';
+export const DEPLOY_BASENAME = '/my-deadly-asteroids';
 export const API_KEY = 'E2oDAmIPAWlnPDGFe4fhlri0KETvG4zONAr3KEfi';
 
 export const START_DATE = '2023-07-20';

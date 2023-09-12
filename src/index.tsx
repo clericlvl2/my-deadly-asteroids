@@ -6,13 +6,14 @@ import queryClient from './api/query/queryClient.ts';
 
 import { App } from './components';
 import { BrowserRouter } from 'react-router-dom';
+import { DEPLOY_BASENAME } from './utils/constants.ts';
 
 const root = createRoot(document.getElementById('root')!);
 
 root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={DEPLOY_BASENAME}>
         <App />
       </BrowserRouter>
     </QueryClientProvider>
