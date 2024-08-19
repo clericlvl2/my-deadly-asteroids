@@ -32,3 +32,18 @@ export const parseParams = (query: string): DateParams => {
     endDate: params.get('end_date') ?? '',
   };
 };
+
+const TIME_DELIMITER = 'T';
+
+const getFormattedDate = (date: Date): string => {
+  const isoDateString = new Date(date).toISOString();
+  const [formattedDate] = isoDateString.split(TIME_DELIMITER);
+
+  return formattedDate;
+};
+
+export const getToday = (): string => {
+  const today = new Date();
+
+  return getFormattedDate(today);
+};
